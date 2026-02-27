@@ -68,17 +68,17 @@ const LinkCard = ({ title, subtitle, description, buttonText, href }: LinkCardPr
         {/* Content */}
         <div className="relative z-10 space-y-4">
           {/* Title block */}
-          <div className="text-left">
-            <div className="flex items-center gap-2">
-              <MessageCircle
-                className="w-6 h-6 flex-shrink-0"
-                style={{
-                  color: "#39FF14",
-                  filter: "drop-shadow(0 0 6px hsl(120 100% 50% / 0.6)) drop-shadow(0 0 15px hsl(120 100% 50% / 0.3))",
-                }}
-              />
+          <div className="flex items-start gap-2 text-left">
+            <MessageCircle
+              className="w-6 h-6 flex-shrink-0 mt-1"
+              style={{
+                color: "#39FF14",
+                filter: "drop-shadow(0 0 6px hsl(120 100% 50% / 0.6)) drop-shadow(0 0 15px hsl(120 100% 50% / 0.3))",
+              }}
+            />
+            <div>
               <h2
-                className="font-display font-extrabold text-xl sm:text-2xl uppercase tracking-[0.06em]"
+                className="font-display font-extrabold text-xl sm:text-2xl uppercase tracking-[0.06em] text-left m-0 p-0"
                 style={{
                   color: "hsl(0 0% 95%)",
                   textShadow:
@@ -87,16 +87,16 @@ const LinkCard = ({ title, subtitle, description, buttonText, href }: LinkCardPr
               >
                 {title}
               </h2>
+              <span
+                className="block text-sm sm:text-base font-medium mt-1 text-left m-0 p-0"
+                style={{
+                  color: "hsl(0 0% 80%)",
+                  textShadow: "0 0 8px hsl(180 100% 55% / 0.2)",
+                }}
+              >
+                {subtitle}
+              </span>
             </div>
-            <p
-              className="text-sm sm:text-base font-medium mt-1"
-              style={{
-                color: "hsl(0 0% 80%)",
-                textShadow: "0 0 8px hsl(180 100% 55% / 0.2)",
-              }}
-            >
-              {subtitle}
-            </p>
           </div>
 
           {/* Description – pure white, larger */}
