@@ -82,9 +82,8 @@ const ProfileHeader = () => {
         }}
       >
         <p>
-          Empresário, infoprodutor e geek funcional. Eu não sei a configuração
-          secreta do último iPhone, mas sei quando algo facilita sua vida de
-          verdade.
+          Eu não sei a configuração secreta do último iPhone, mas sei quando
+          algo facilita sua vida de verdade.
         </p>
         <p>
           Compartilho meu cotidiano entre negócios, família e ideias que surgem
