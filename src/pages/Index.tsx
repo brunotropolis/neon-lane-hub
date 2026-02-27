@@ -25,7 +25,7 @@ const Index = () => {
       <NeonDecorations />
       <div className="noise-overlay absolute inset-0 pointer-events-none z-[1]" />
 
-      <main className="relative z-10 mx-auto max-w-md px-5 py-6 flex flex-col items-center gap-10">
+      <main className="relative z-10 mx-auto max-w-md px-5 py-6 flex flex-col items-center gap-8">
         {/* HERO – neon sign headline */}
         <HeroSection />
 
