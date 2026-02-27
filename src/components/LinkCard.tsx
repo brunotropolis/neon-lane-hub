@@ -68,7 +68,7 @@ const LinkCard = ({ title, subtitle, description, buttonText, href }: LinkCardPr
         {/* Content */}
         <div className="relative z-10 space-y-4">
           {/* Title block */}
-          <div>
+          <div className="text-left">
             <div className="flex items-center gap-2">
               <MessageCircle
                 className="w-6 h-6 flex-shrink-0"
