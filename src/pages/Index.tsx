@@ -46,7 +46,7 @@ const Index = () => {
           <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
             <LinkCard
               title="BUSCADOR GEEK"
-              subtitle="grupos de ofertas no whatsapp"
+              subtitle="grupos do whatsapp"
               description="Grupos exclusivos onde busco nas melhores plataformas descontos especiais, cupons e ofertas de todos os produtos que você possa imaginar."
               buttonText="CONFIRA AQUI"
               href="https://sndflw.com/i/Bz1pJNeognZTuxupwSF4"
