@@ -117,9 +117,6 @@
       radial-gradient(1px 1px at 5% 50%, hsl(0 0% 100% / 0.5), transparent);
   }
 
-  .noise-overlay {
-    position: relative;
-  }
   .noise-overlay::before {
     content: '';
     position: absolute;
