@@ -25,14 +25,12 @@ const Index = () => {
       <NeonDecorations />
       <div className="noise-overlay absolute inset-0 pointer-events-none z-[1]" />
 
-      <main className="relative z-10 mx-auto max-w-md px-5 py-6 flex flex-col items-center gap-8">
+      <main className="relative z-10 mx-auto max-w-md px-5 py-6 flex flex-col items-center gap-6">
         {/* HERO – neon sign headline */}
         <HeroSection />
 
-        <div className="gradient-divider w-48" />
-
         {/* CARDS */}
-        <section className="w-full space-y-6">
+        <section className="w-full space-y-5">
           <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
             <LinkCard
               title="MANUAL DO GEEK"
@@ -54,14 +52,10 @@ const Index = () => {
           </motion.div>
         </section>
 
-        <div className="gradient-divider w-36" />
-
         {/* ABOUT */}
         <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible">
           <ProfileHeader />
         </motion.div>
-
-        <div className="gradient-divider w-28" />
 
         {/* SOCIAL */}
         <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible">
