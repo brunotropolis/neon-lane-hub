@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="w-full pt-6 flex flex-col items-center gap-3">
-      {/* Neon separator */}
-      <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <footer className="w-full pt-6 flex flex-col items-center gap-4">
+      {/* Gradient divider */}
+      <div className="gradient-divider w-32" />
 
       <div className="text-center text-xs text-muted-foreground space-y-1">
         <p className="font-medium text-foreground/70">Parcerias & Publicidade</p>

@@ -30,7 +30,7 @@ const SocialIcons = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={s.label}
-          className="text-muted-foreground transition-all duration-300 hover:text-accent hover:drop-shadow-[0_0_8px_hsl(200_100%_55%/0.6)]"
+          className="relative text-muted-foreground transition-all duration-300 hover:text-accent hover:drop-shadow-[0_0_12px_hsl(200_100%_55%/0.7)] p-2 rounded-full hover:neon-bloom-cyan"
         >
           {s.icon}
         </a>

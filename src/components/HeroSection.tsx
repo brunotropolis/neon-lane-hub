@@ -16,7 +16,16 @@ const fadeUp = {
 };
 
 const HeroSection = () => (
-  <section className="w-full text-center space-y-6">
+  <section className="w-full text-center space-y-6 relative">
+    {/* Section radial glow */}
+    <div
+      className="absolute -inset-10 -z-10"
+      style={{
+        background:
+          "radial-gradient(ellipse at 50% 50%, hsl(280 80% 60% / 0.08), transparent 70%)",
+      }}
+    />
+
     <motion.h1
       custom={0}
       variants={fadeUp}
@@ -47,9 +56,10 @@ const HeroSection = () => (
       {badges.map((badge) => (
         <span
           key={badge}
-          className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm"
+          className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm neon-bloom-purple"
           style={{
-            boxShadow: "0 0 12px hsl(280 80% 60% / 0.2)",
+            boxShadow:
+              "0 0 12px hsl(280 80% 60% / 0.25), 0 0 30px hsl(280 80% 60% / 0.1)",
           }}
         >
           {badge}
