@@ -2,44 +2,48 @@ import { motion } from "framer-motion";
 
 interface LinkCardProps {
   title: string;
+  subtitle: string;
   description: string;
   buttonText: string;
   href: string;
 }
 
-const LinkCard = ({ title, description, buttonText, href }: LinkCardProps) => {
+const LinkCard = ({ title, subtitle, description, buttonText, href }: LinkCardProps) => {
   return (
     <motion.div
-      className="relative rounded-2xl p-[1px] overflow-hidden group"
+      className="relative rounded-2xl overflow-hidden group"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Neon gradient border */}
+      {/* Thick neon border glow – cyan to magenta */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute -inset-[2px] rounded-2xl"
         style={{
           background:
-            "linear-gradient(135deg, hsl(280 80% 60% / 0.5), hsl(200 100% 55% / 0.3), hsl(330 85% 60% / 0.5), hsl(30 100% 55% / 0.3))",
+            "linear-gradient(135deg, hsl(180 100% 55%), hsl(280 80% 60%), hsl(330 85% 60%), hsl(180 100% 55%))",
+          boxShadow:
+            "0 0 15px hsl(180 100% 55% / 0.4), 0 0 40px hsl(330 85% 60% / 0.25), 0 0 80px hsl(280 80% 60% / 0.15)",
         }}
       />
 
-      {/* Bloom glow */}
+      {/* Outer bloom on hover */}
       <div
-        className="absolute -inset-6 rounded-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-2xl -z-10"
+        className="absolute -inset-8 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at center, hsl(280 80% 60% / 0.2), transparent 70%)",
+            "radial-gradient(ellipse at center, hsl(280 80% 60% / 0.2), hsl(180 100% 55% / 0.1), transparent 70%)",
+          filter: "blur(20px)",
         }}
       />
 
-      {/* Card surface */}
+      {/* Card surface – semi-transparent dark */}
       <div
         className="relative rounded-2xl p-6 space-y-4 overflow-hidden"
         style={{
-          background: "hsl(260 30% 10% / 0.7)",
+          background: "hsl(260 30% 8% / 0.85)",
           backdropFilter: "blur(20px)",
           boxShadow:
-            "0 8px 40px hsl(0 0% 0% / 0.5), 0 0 30px hsl(280 80% 60% / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.08)",
+            "inset 0 2px 0 hsl(0 0% 100% / 0.08), inset 0 0 40px hsl(280 80% 60% / 0.05), 0 20px 60px hsl(0 0% 0% / 0.5)",
         }}
       >
         {/* Inner gradient overlay */}
@@ -47,7 +51,7 @@ const LinkCard = ({ title, description, buttonText, href }: LinkCardProps) => {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(135deg, hsl(280 80% 60% / 0.05) 0%, transparent 50%, hsl(200 100% 55% / 0.03) 100%)",
+              "linear-gradient(135deg, hsl(180 100% 55% / 0.04) 0%, transparent 50%, hsl(330 85% 60% / 0.03) 100%)",
           }}
         />
 
@@ -56,49 +60,68 @@ const LinkCard = ({ title, description, buttonText, href }: LinkCardProps) => {
           className="absolute top-0 left-[10%] right-[10%] h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.15), transparent)",
+              "linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.2), transparent)",
           }}
         />
 
         {/* Content */}
         <div className="relative z-10 space-y-4">
-          <h2
-            className="font-display font-bold text-lg"
-            style={{
-              color: "hsl(0 0% 95%)",
-              textShadow: "0 0 20px hsl(280 80% 60% / 0.3)",
-            }}
+          {/* Title block */}
+          <div>
+            <h2
+              className="font-display font-900 text-xl sm:text-2xl uppercase tracking-wide"
+              style={{
+                color: "hsl(0 0% 93%)",
+                textShadow:
+                  "0 0 10px hsl(180 100% 55% / 0.4), 0 0 25px hsl(330 85% 60% / 0.2)",
+              }}
+            >
+              {title}
+            </h2>
+            <p
+              className="text-sm sm:text-base font-medium mt-1"
+              style={{
+                color: "hsl(0 0% 80%)",
+                textShadow: "0 0 8px hsl(180 100% 55% / 0.2)",
+              }}
+            >
+              {subtitle}
+            </p>
+          </div>
+
+          {/* Description – pure white, larger */}
+          <p
+            className="text-[15px] sm:text-base leading-relaxed"
+            style={{ color: "#FFFFFF" }}
           >
-            {title}
-          </h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
             {description}
           </p>
+
+          {/* NEON GREEN button */}
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-reflection group/btn inline-flex w-full items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold tracking-widest transition-all duration-300"
+            className="btn-reflection group/btn inline-flex w-full items-center justify-center rounded-xl px-6 py-4 text-sm font-bold tracking-widest uppercase transition-all duration-300"
             style={{
               background:
-                "linear-gradient(135deg, hsl(260 30% 12% / 0.8), hsl(260 20% 15% / 0.6))",
-              border: "1px solid hsl(30 100% 55% / 0.4)",
-              color: "hsl(0 0% 92%)",
+                "linear-gradient(135deg, hsl(120 100% 35% / 0.2), hsl(120 100% 40% / 0.15))",
+              border: "2px solid hsl(120 100% 50% / 0.8)",
+              color: "#39FF14",
               boxShadow:
-                "0 0 15px hsl(30 100% 55% / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
+                "0 0 15px hsl(120 100% 50% / 0.4), 0 0 40px hsl(120 100% 50% / 0.15), inset 0 0 20px hsl(120 100% 50% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.1)",
+              textShadow:
+                "0 0 10px hsl(120 100% 50% / 0.8), 0 0 30px hsl(120 100% 50% / 0.4)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.boxShadow =
-                "0 0 25px hsl(30 100% 55% / 0.35), 0 0 60px hsl(30 100% 55% / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.08)";
-              e.currentTarget.style.borderColor = "hsl(30 100% 55% / 0.7)";
-              e.currentTarget.style.textShadow =
-                "0 0 10px hsl(30 100% 55% / 0.6)";
+                "0 0 25px hsl(120 100% 50% / 0.6), 0 0 60px hsl(120 100% 50% / 0.3), 0 0 100px hsl(120 100% 50% / 0.15), inset 0 0 30px hsl(120 100% 50% / 0.12), inset 0 1px 0 hsl(0 0% 100% / 0.15)";
+              e.currentTarget.style.borderColor = "hsl(120 100% 55%)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.boxShadow =
-                "0 0 15px hsl(30 100% 55% / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.05)";
-              e.currentTarget.style.borderColor = "hsl(30 100% 55% / 0.4)";
-              e.currentTarget.style.textShadow = "none";
+                "0 0 15px hsl(120 100% 50% / 0.4), 0 0 40px hsl(120 100% 50% / 0.15), inset 0 0 20px hsl(120 100% 50% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.1)";
+              e.currentTarget.style.borderColor = "hsl(120 100% 50% / 0.8)";
             }}
           >
             {buttonText}

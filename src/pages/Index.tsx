@@ -20,37 +20,33 @@ const fadeUp = {
 const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Synthwave grid background */}
       <SynthwaveGrid />
-
-      {/* Atmospheric layers */}
       <FloatingParticles />
       <NeonDecorations />
-
-      {/* Noise texture overlay */}
       <div className="noise-overlay absolute inset-0 pointer-events-none z-[1]" />
 
       <main className="relative z-10 mx-auto max-w-md px-5 py-6 flex flex-col items-center gap-10">
-        {/* HERO – large portrait + gradient text */}
+        {/* HERO – neon sign headline */}
         <HeroSection />
 
-        {/* Gradient divider */}
         <div className="gradient-divider w-48" />
 
-        {/* SECTION 2 – CTA PANELS */}
+        {/* CARDS */}
         <section className="w-full space-y-6">
-          <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
+          <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
             <LinkCard
-              title="Manual do Geek – Canal do WhatsApp"
+              title="MANUAL DO GEEK"
+              subtitle="canal do whatsapp"
               description="Postagens diárias do mundo geek e cultura pop. Eu localizo as melhores ofertas de produtos para você, de AirFryer, celular novo até achadinhos para dar um Level UP na sua vida."
               buttonText="CONFIRA AQUI"
               href="https://whatsapp.com/channel/0029Vb6yv9NKmCPV7OPXad3j"
             />
           </motion.div>
 
-          <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
+          <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
             <LinkCard
-              title="Buscador Geek – Grupos de Ofertas"
+              title="BUSCADOR GEEK"
+              subtitle="grupos de ofertas no whatsapp"
               description="Grupos exclusivos onde busco nas melhores plataformas descontos especiais, cupons e ofertas de todos os produtos que você possa imaginar."
               buttonText="CONFIRA AQUI"
               href="https://sndflw.com/i/Bz1pJNeognZTuxupwSF4"
@@ -58,24 +54,22 @@ const Index = () => {
           </motion.div>
         </section>
 
-        {/* Gradient divider */}
         <div className="gradient-divider w-36" />
 
-        {/* SECTION 3 – ABOUT */}
-        <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible">
+        {/* ABOUT */}
+        <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible">
           <ProfileHeader />
         </motion.div>
 
-        {/* Gradient divider */}
         <div className="gradient-divider w-28" />
 
         {/* SOCIAL */}
-        <motion.div custom={7} variants={fadeUp} initial="hidden" animate="visible">
+        <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible">
           <SocialIcons />
         </motion.div>
 
         {/* FOOTER */}
-        <motion.div custom={8} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
+        <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
           <Footer />
         </motion.div>
       </main>

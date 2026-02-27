@@ -8,41 +8,45 @@ const ProfileHeader = () => {
         className="absolute -inset-20 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 30%, hsl(280 80% 60% / 0.08), transparent 70%)",
+            "radial-gradient(ellipse at 50% 30%, hsl(280 80% 60% / 0.1), transparent 70%)",
         }}
       />
 
-      {/* Portrait – still prominent, not tiny */}
-      <div className="relative">
+      {/* Large portrait – min 35% width */}
+      <div className="relative" style={{ width: "min(45%, 220px)" }}>
+        {/* Outer bloom glow */}
         <div
-          className="absolute -inset-3 rounded-xl"
+          className="absolute -inset-6 rounded-2xl"
           style={{
             background:
-              "linear-gradient(135deg, hsl(280 80% 60% / 0.4), hsl(330 85% 60% / 0.3), hsl(200 100% 55% / 0.3))",
-            filter: "blur(12px)",
+              "radial-gradient(ellipse at center, hsl(330 85% 60% / 0.25), hsl(280 80% 60% / 0.15), transparent 70%)",
+            filter: "blur(20px)",
           }}
         />
+        {/* Neon rim border */}
         <div
-          className="absolute -inset-[2px] rounded-xl"
+          className="absolute -inset-[3px] rounded-2xl"
           style={{
             background:
-              "linear-gradient(135deg, hsl(280 80% 60% / 0.6), hsl(330 85% 60% / 0.4), hsl(200 100% 55% / 0.4))",
+              "linear-gradient(135deg, hsl(280 80% 60% / 0.7), hsl(330 85% 60% / 0.5), hsl(180 100% 55% / 0.5), hsl(280 80% 60% / 0.7))",
+            boxShadow:
+              "0 0 15px hsl(280 80% 60% / 0.4), 0 0 40px hsl(330 85% 60% / 0.2)",
           }}
         />
         <img
           src={profileImg}
           alt="Bruno Sampaio"
-          className="relative w-32 h-40 rounded-xl object-cover"
+          className="relative w-full aspect-[3/4] rounded-2xl object-cover"
           style={{
             boxShadow:
-              "0 0 30px hsl(280 80% 60% / 0.2), 0 10px 40px hsl(0 0% 0% / 0.4)",
+              "0 0 40px hsl(280 80% 60% / 0.25), 0 15px 50px hsl(0 0% 0% / 0.5)",
           }}
         />
       </div>
 
       {/* Name */}
       <h2
-        className="font-display font-900 text-2xl tracking-tight"
+        className="font-display font-900 text-2xl sm:text-3xl tracking-tight"
         style={{
           background:
             "linear-gradient(135deg, hsl(280 80% 70%), hsl(200 100% 65%))",
@@ -54,13 +58,25 @@ const ProfileHeader = () => {
         Bruno Sampaio
       </h2>
 
+      {/* Tagline */}
+      <p
+        className="text-sm font-medium tracking-[0.12em] uppercase"
+        style={{
+          color: "hsl(0 0% 85%)",
+          textShadow: "0 0 15px hsl(330 85% 60% / 0.3)",
+        }}
+      >
+        Pai, marido, empresário & geek funcional
+      </p>
+
       {/* Bio glass panel */}
       <div
-        className="rounded-xl p-5 text-sm leading-relaxed text-muted-foreground space-y-3 max-w-sm"
+        className="rounded-xl p-5 text-[15px] leading-relaxed space-y-3 max-w-sm"
         style={{
+          color: "#FFFFFF",
           background: "hsl(260 30% 10% / 0.5)",
           backdropFilter: "blur(16px)",
-          border: "1px solid hsl(280 80% 60% / 0.12)",
+          border: "1px solid hsl(280 80% 60% / 0.15)",
           boxShadow:
             "0 8px 32px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
         }}
@@ -86,8 +102,8 @@ const ProfileHeader = () => {
         </p>
         <p
           style={{
-            color: "hsl(200 100% 65%)",
-            textShadow: "0 0 15px hsl(200 100% 55% / 0.3)",
+            color: "hsl(180 100% 70%)",
+            textShadow: "0 0 15px hsl(180 100% 55% / 0.4)",
           }}
           className="font-medium"
         >
