@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import FloatingParticles from "@/components/FloatingParticles";
+import NeonDecorations from "@/components/NeonDecorations";
 import HeroSection from "@/components/HeroSection";
 import LinkCard from "@/components/LinkCard";
 import ProfileHeader from "@/components/ProfileHeader";
@@ -17,23 +18,37 @@ const fadeUp = {
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background star-field relative overflow-hidden">
+    <div className="min-h-screen bg-background star-field noise-overlay relative overflow-hidden">
       <FloatingParticles />
+      <NeonDecorations />
 
-      {/* Ambient glow orbs */}
+      {/* Layered radial glows – more density */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
-        <div className="absolute top-1/3 -left-32 w-[350px] h-[350px] rounded-full bg-secondary/5 blur-[100px]" />
-        <div className="absolute top-2/3 -right-32 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[100px]" />
-        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-neon-orange/3 blur-[120px]" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/8 blur-[140px]" />
+        <div className="absolute top-[15%] -left-40 w-[400px] h-[400px] rounded-full bg-secondary/6 blur-[120px]" />
+        <div className="absolute top-[35%] -right-32 w-[350px] h-[350px] rounded-full bg-accent/6 blur-[110px]" />
+        <div className="absolute top-[55%] left-1/3 w-[500px] h-[300px] rounded-full bg-neon-orange/4 blur-[130px]" />
+        <div className="absolute top-[75%] -left-20 w-[300px] h-[300px] rounded-full bg-primary/5 blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/4 blur-[120px]" />
+        {/* Gradient wave overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, hsl(230 25% 7% / 0) 0%, hsl(280 40% 12% / 0.08) 30%, hsl(200 60% 15% / 0.06) 50%, hsl(330 40% 12% / 0.08) 70%, hsl(230 25% 7% / 0) 100%)",
+          }}
+        />
       </div>
 
       <main className="relative z-10 mx-auto max-w-md px-5 py-10 flex flex-col items-center gap-10">
         {/* HERO */}
         <HeroSection />
 
+        {/* Gradient divider */}
+        <div className="gradient-divider w-48" />
+
         {/* SECTION 1 – CTA CARDS */}
-        <section className="w-full space-y-5">
+        <section className="w-full space-y-6">
           <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
             <LinkCard
               title="Manual do Geek – Canal do WhatsApp"
@@ -53,16 +68,16 @@ const Index = () => {
           </motion.div>
         </section>
 
-        {/* Neon divider */}
-        <div className="w-32 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+        {/* Gradient divider */}
+        <div className="gradient-divider w-36" />
 
         {/* SECTION 2 – ABOUT */}
         <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible">
           <ProfileHeader />
         </motion.div>
 
-        {/* Neon divider */}
-        <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+        {/* Gradient divider */}
+        <div className="gradient-divider w-28" />
 
         {/* SECTION 3 – SOCIAL */}
         <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible">

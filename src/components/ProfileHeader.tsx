@@ -2,11 +2,21 @@ import profileImg from "@/assets/profile.png";
 
 const ProfileHeader = () => {
   return (
-    <div className="flex flex-col items-center text-center gap-4">
-      {/* Profile photo with neon ring */}
+    <div className="flex flex-col items-center text-center gap-4 relative">
+      {/* Section glow */}
+      <div
+        className="absolute -inset-16 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 30%, hsl(330 85% 60% / 0.06), transparent 70%)",
+        }}
+      />
+
+      {/* Profile photo with neon ring + bloom */}
       <div className="relative">
+        <div className="absolute -inset-3 rounded-full bg-gradient-to-tr from-primary via-secondary to-accent opacity-20 blur-xl animate-pulse" />
         <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-primary via-secondary to-accent opacity-50 blur-lg animate-pulse" />
-        <div className="relative w-28 h-28 rounded-full p-[3px] bg-gradient-to-tr from-primary via-secondary to-accent">
+        <div className="relative w-28 h-28 rounded-full p-[3px] bg-gradient-to-tr from-primary via-secondary to-accent neon-bloom-purple">
           <img
             src={profileImg}
             alt="Bruno Sampaio"
@@ -25,8 +35,8 @@ const ProfileHeader = () => {
         Pai, marido, empresário & geek funcional
       </p>
 
-      {/* Bio */}
-      <div className="text-sm leading-relaxed text-muted-foreground space-y-3 max-w-sm">
+      {/* Bio in glass container */}
+      <div className="glass-card rounded-xl p-5 text-sm leading-relaxed text-muted-foreground space-y-3 max-w-sm">
         <p>
           Empresário, infoprodutor e geek funcional. Eu não sei a configuração secreta do último iPhone, mas sei quando algo facilita sua vida de verdade.
         </p>
