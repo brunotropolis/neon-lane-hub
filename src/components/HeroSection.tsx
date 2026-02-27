@@ -26,7 +26,7 @@ const flickerVariants = {
 };
 
 const HeroSection = () => (
-  <section className="relative w-full flex flex-col items-center pt-10 pb-6">
+  <section className="relative w-full flex flex-col items-center pt-10 pb-2">
     {/* Neon sign light spill onto background */}
     <div
       className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] -z-0"
