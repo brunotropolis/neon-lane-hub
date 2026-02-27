@@ -113,34 +113,6 @@ const HeroSection = () => (
       Geek culture, ofertas inteligentes e vida real sem filtro.
     </motion.p>
 
-    {/* Feature badges */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6, duration: 0.8 }}
-      className="relative z-10 flex flex-wrap justify-center gap-2 mt-6"
-    >
-      {[
-        "Ofertas que valem a pena",
-        "Cultura pop e tecnologia",
-        "Bastidores da vida real",
-      ].map((badge) => (
-        <span
-          key={badge}
-          className="inline-flex items-center rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide"
-          style={{
-            background: "hsl(280 40% 15% / 0.6)",
-            border: "1px solid hsl(280 80% 60% / 0.3)",
-            color: "hsl(280 80% 75%)",
-            backdropFilter: "blur(8px)",
-            boxShadow:
-              "0 0 15px hsl(280 80% 60% / 0.2), inset 0 0 10px hsl(280 80% 60% / 0.05)",
-          }}
-        >
-          {badge}
-        </span>
-      ))}
-    </motion.div>
   </section>
 );
 
