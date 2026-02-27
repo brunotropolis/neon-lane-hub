@@ -69,16 +69,25 @@ const LinkCard = ({ title, subtitle, description, buttonText, href }: LinkCardPr
         <div className="relative z-10 space-y-4">
           {/* Title block */}
           <div>
-            <h2
-              className="font-display font-900 text-xl sm:text-2xl uppercase tracking-wide"
-              style={{
-                color: "hsl(0 0% 93%)",
-                textShadow:
-                  "0 0 10px hsl(180 100% 55% / 0.4), 0 0 25px hsl(330 85% 60% / 0.2)",
-              }}
-            >
-              {title}
-            </h2>
+            <div className="flex items-center gap-2">
+              <MessageCircle
+                className="w-6 h-6 flex-shrink-0"
+                style={{
+                  color: "#39FF14",
+                  filter: "drop-shadow(0 0 6px hsl(120 100% 50% / 0.6)) drop-shadow(0 0 15px hsl(120 100% 50% / 0.3))",
+                }}
+              />
+              <h2
+                className="font-display font-extrabold text-xl sm:text-2xl uppercase tracking-[0.06em]"
+                style={{
+                  color: "hsl(0 0% 95%)",
+                  textShadow:
+                    "0 0 10px hsl(180 100% 55% / 0.5), 0 0 25px hsl(330 85% 60% / 0.3), 0 2px 4px hsl(0 0% 0% / 0.4)",
+                }}
+              >
+                {title}
+              </h2>
+            </div>
             <p
               className="text-sm sm:text-base font-medium mt-1"
               style={{

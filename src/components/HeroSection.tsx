@@ -55,15 +55,16 @@ const HeroSection = () => (
 
       {/* Neon text */}
       <h1
-        className="relative font-display font-900 text-3xl sm:text-4xl md:text-5xl text-center leading-tight tracking-tight px-4"
+        className="relative font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-center leading-tight tracking-[0.08em] uppercase px-4"
         style={{
-          color: "hsl(180 100% 80%)",
+          color: "hsl(0 0% 95%)",
+          WebkitTextStroke: "1px hsl(180 100% 70% / 0.4)",
           textShadow: `
-            0 0 7px hsl(180 100% 70% / 0.9),
-            0 0 15px hsl(180 100% 60% / 0.7),
-            0 0 30px hsl(180 100% 55% / 0.5),
-            0 0 60px hsl(330 85% 60% / 0.4),
-            0 0 100px hsl(330 85% 60% / 0.2)
+            0 0 10px hsl(180 100% 70% / 0.8),
+            0 0 20px hsl(180 100% 60% / 0.6),
+            0 0 40px hsl(330 85% 60% / 0.5),
+            0 0 80px hsl(330 85% 60% / 0.3),
+            0 2px 4px hsl(0 0% 0% / 0.5)
           `,
         }}
       >
@@ -71,13 +72,14 @@ const HeroSection = () => (
         <br />
         <span
           style={{
-            color: "hsl(330 85% 75%)",
+            color: "hsl(330 85% 80%)",
+            WebkitTextStroke: "1px hsl(330 85% 65% / 0.4)",
             textShadow: `
-              0 0 7px hsl(330 85% 65% / 0.9),
-              0 0 15px hsl(330 85% 60% / 0.7),
-              0 0 30px hsl(330 85% 55% / 0.5),
-              0 0 60px hsl(180 100% 55% / 0.3),
-              0 0 100px hsl(180 100% 55% / 0.15)
+              0 0 10px hsl(330 85% 65% / 0.8),
+              0 0 20px hsl(330 85% 60% / 0.6),
+              0 0 40px hsl(180 100% 55% / 0.4),
+              0 0 80px hsl(180 100% 55% / 0.2),
+              0 2px 4px hsl(0 0% 0% / 0.5)
             `,
           }}
         >
