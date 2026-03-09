@@ -35,7 +35,7 @@ const Index = () => {
             <LinkCard
               title="MANUAL DO GEEK"
               subtitle="canal do whatsapp"
-              description={"🚀 Cultura geek e novidades do mundo pop direto no seu WhatsApp.\n\nMemes, curiosidades e descobertas que todo geek gosta de acompanhar. 🎮🍿\n\nE quando aparece um produto interessante, um cupom inesperado ou um achadinho que vale o upgrade… você fica sabendo por aqui."}
+              description={"🚀 Cultura geek e novidades do mundo pop direto no seu WhatsApp.\n\nMemes, curiosidades e descobertas que todo geek gosta de acompanhar. 🎮🍿\n\nE quando aparece um produto interessante, um cupom inesperado ou um achadinho que vale o upgrade… você fica sabendo por aqui."}interessante, um cupom inesperado ou um achadinho que vale o upgrade… você fica sabendo por aqui."}
               buttonText="CONFIRA AQUI"
               href="https://whatsapp.com/channel/0029Vb6yv9NKmCPV7OPXad3j"
             />
@@ -43,9 +43,7 @@ const Index = () => {
 
           <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="w-full">
             <LinkCard
-              title="BUSCADOR GEEK"
-              subtitle="grupos do whatsapp"
-              description="Grupos exclusivos onde busco nas melhores plataformas descontos especiais, cupons e ofertas de todos os produtos que você possa imaginar."
+    {"🏛️ O lugar onde os bons achados da internet aparecem primeiro.\n\nAqui eu garimpo nas principais plataformas produtos úteis, interessantes e que fazem sentido no dia a dia.\n\nDe tecnologia que facilita a vida a achadinhos para casa, descanso ou lazer.\n\nQuando surge uma oportunidade boa de verdade, ela aparece por aqui primeiro. 🚀"}ores plataformas descontos especiais, cupons e ofertas de todos os produtos que você possa imaginar."
               buttonText="CONFIRA AQUI"
               href="https://sndflw.com/i/Bz1pJNeognZTuxupwSF4"
             />
