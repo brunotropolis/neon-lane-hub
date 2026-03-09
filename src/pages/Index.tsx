@@ -35,7 +35,7 @@ const Index = () => {
             <LinkCard
               title="MANUAL DO GEEK"
               subtitle="canal do whatsapp"
-              description={"🚀 Cultura geek e novidades do mundo pop direto no seu WhatsApp.\n\nMemes, curiosidades e descobertas que todo geek gosta de acompanhar. 🎮🍿\n\nE quando aparece um produto interessante, um cupom inesperado ou um achadinho que vale o upgrade\u2026 voc\u00ea fica sabendo por aqui. \uD83D\uDC47"}
+              description={"🚀 Cultura geek e novidades do mundo pop direto no seu WhatsApp.\n\nMemes, curiosidades e descobertas que todo geek gosta de acompanhar. 🎮🍿\n\nE quando aparece um produto interessante, um cupom inesperado ou um achadinho que vale o upgrade… você fica sabendo por aqui.\u00A0👇"}
               buttonText="CONFIRA AQUI"
               href="https://whatsapp.com/channel/0029Vb6yv9NKmCPV7OPXad3j"
             />
@@ -45,7 +45,7 @@ const Index = () => {
             <LinkCard
               title="BUSCADOR GEEK"
               subtitle="grupos do whatsapp"
-              description={"\uD83C\uDFDB\uFE0F O lugar onde os bons achados da internet aparecem primeiro.\n\nAqui eu garimpo nas principais plataformas produtos \u00FAteis, interessantes e que fazem sentido no dia a dia.\n\nDe tecnologia que facilita a vida a achadinhos para casa, descanso ou lazer.\n\nQuando surge uma oportunidade boa de verdade, ela aparece por aqui primeiro. \uD83D\uDC47"}
+              description={"🏛️ O lugar onde os bons achados da internet aparecem primeiro.\n\nAqui eu garimpo nas principais plataformas produtos úteis, interessantes e que fazem sentido no dia a dia.\n\nDe tecnologia que facilita a vida a achadinhos para casa, descanso ou lazer.\n\nQuando surge uma oportunidade boa de verdade, ela aparece por aqui primeiro.\u00A0👇"}
               buttonText="CONFIRA AQUI"
               href="https://sndflw.com/i/Bz1pJNeognZTuxupwSF4"
             />
