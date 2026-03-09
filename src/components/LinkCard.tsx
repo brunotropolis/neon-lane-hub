@@ -101,7 +101,7 @@ const LinkCard = ({ title, subtitle, description, buttonText, href }: LinkCardPr
 
           {/* Description – pure white, larger */}
           <p
-            className="text-[15px] sm:text-base leading-relaxed"
+            className="text-[15px] sm:text-base leading-relaxed whitespace-pre-line"
             style={{ color: "#FFFFFF" }}
           >
             {description}
