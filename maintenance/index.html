@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Em construção | Brunotropolis</title>
+    <meta name="description" content="Estamos preparando algo novo. Voltamos já." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Em construção | Brunotropolis" />
+    <meta property="og:description" content="Estamos preparando algo novo. Voltamos já." />
+    <style>
+      :root {
+        --bg: hsl(230 25% 7%);
+        --fg: hsl(0 0% 95%);
+        --muted: hsl(230 15% 60%);
+        --purple: hsl(280 80% 60%);
+        --pink: hsl(330 85% 60%);
+        --blue: hsl(200 100% 55%);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; }
+      body {
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        overflow: hidden;
+        position: relative;
+      }
+      /* glows de fundo */
+      body::before, body::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.35;
+        z-index: 0;
+        animation: float 12s ease-in-out infinite;
+      }
+      body::before {
+        width: 420px; height: 420px;
+        background: var(--purple);
+        top: -120px; left: -100px;
+      }
+      body::after {
+        width: 380px; height: 380px;
+        background: var(--pink);
+        bottom: -120px; right: -100px;
+        animation-delay: -6s;
+      }
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(40px, 30px); }
+      }
+      .card { position: relative; z-index: 1; max-width: 640px; }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border: 1px solid hsl(230 20% 22%);
+        border-radius: 999px;
+        padding: 0.45rem 1rem;
+        margin-bottom: 2rem;
+      }
+      .dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--blue);
+        box-shadow: 0 0 10px var(--blue);
+        animation: pulse 1.6s ease-in-out infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      h1 {
+        font-size: clamp(2.6rem, 9vw, 5rem);
+        font-weight: 800;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        background: linear-gradient(100deg, var(--purple), var(--pink) 55%, var(--blue));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      p.lead {
+        margin-top: 1.4rem;
+        font-size: clamp(1rem, 2.6vw, 1.25rem);
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .brand {
+        margin-top: 2.6rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: hsl(230 15% 45%);
+      }
+      a.contato {
+        color: var(--fg);
+        text-decoration: none;
+        border-bottom: 1px solid hsl(330 85% 60% / 0.5);
+        transition: border-color 0.2s;
+      }
+      a.contato:hover { border-color: var(--pink); }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <span class="badge"><span class="dot"></span>Voltamos já</span>
+      <h1>Em construção</h1>
+      <p class="lead">
+        Estamos preparando algo novo por aqui.<br />
+        Para parcerias e contato:
+        <a class="contato" href="mailto:contato@brunotropolis.com.br">contato@brunotropolis.com.br</a>
+      </p>
+      <div class="brand">Brunotropolis</div>
+    </main>
+  </body>
+</html>
