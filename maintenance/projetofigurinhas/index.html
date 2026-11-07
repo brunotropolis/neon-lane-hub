@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Disparos de Figurinhas | Brunotropolis</title>
+<meta name="description" content="Proposta: canal de figurinhas no WhatsApp postando sozinho, no ritmo certo." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0d0f17" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: hsl(230 25% 7%);
+    --card: hsl(230 20% 10%);
+    --card2: hsl(230 20% 12%);
+    --border: hsl(230 20% 22%);
+    --fg: hsl(0 0% 95%);
+    --muted: hsl(230 10% 62%);
+    --purple: hsl(280 80% 60%);
+    --pink: hsl(330 85% 60%);
+    --blue: hsl(200 100% 55%);
+    --orange: hsl(30 100% 55%);
+    --yellow: hsl(45 100% 55%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, hsl(0 0% 100% / .4), transparent),
+      radial-gradient(1px 1px at 30% 60%, hsl(0 0% 100% / .3), transparent),
+      radial-gradient(1.5px 1.5px at 50% 10%, hsl(0 0% 100% / .5), transparent),
+      radial-gradient(1px 1px at 70% 40%, hsl(0 0% 100% / .3), transparent),
+      radial-gradient(1px 1px at 80% 80%, hsl(0 0% 100% / .4), transparent),
+      radial-gradient(1.5px 1.5px at 15% 85%, hsl(0 0% 100% / .3), transparent),
+      radial-gradient(1px 1px at 90% 15%, hsl(0 0% 100% / .5), transparent),
+      radial-gradient(1px 1px at 45% 75%, hsl(0 0% 100% / .2), transparent),
+      radial-gradient(1.5px 1.5px at 25% 35%, hsl(0 0% 100% / .4), transparent),
+      radial-gradient(1px 1px at 85% 65%, hsl(0 0% 100% / .3), transparent);
+  }
+  .glow { position: fixed; border-radius: 50%; filter: blur(100px); opacity: .28; z-index: 0; pointer-events: none; }
+  .glow.a { width: 420px; height: 420px; background: var(--purple); top: -140px; left: -140px; }
+  .glow.b { width: 380px; height: 380px; background: var(--pink); bottom: -160px; right: -140px; }
+  .grid {
+    position: absolute; left: 0; right: 0; top: 0; height: 620px; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(hsl(280 80% 60% / .10) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(280 80% 60% / .10) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 30%, transparent);
+  }
+  main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 56px 16px 64px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-size: .74rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
+    padding: .45rem 1rem; background: hsl(230 20% 10% / .6);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 10px var(--blue); }
+
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; letter-spacing: -.02em; }
+  h1 {
+    margin-top: 1.4rem;
+    font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 800; line-height: 1.05;
+    background: linear-gradient(100deg, var(--purple), var(--pink) 55%, var(--blue));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .lead { margin-top: 1.1rem; font-size: clamp(1.02rem, 2.6vw, 1.2rem); color: var(--muted); max-width: 640px; }
+  .lead strong { color: var(--fg); font-weight: 600; }
+
+  section { margin-top: 64px; }
+  .kicker { font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); font-weight: 600; }
+  h2 { font-size: clamp(1.5rem, 5vw, 2.1rem); font-weight: 700; margin-top: .35rem; line-height: 1.15; }
+  .sub { color: var(--muted); margin-top: .5rem; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 24px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px;
+    background: var(--c, var(--purple)); box-shadow: 0 0 16px var(--c, var(--purple));
+  }
+  .card .ico { font-size: 2rem; line-height: 1; }
+  .card h3 { font-size: 1.05rem; margin-top: .7rem; font-weight: 700; }
+  .card p { color: var(--muted); font-size: .95rem; margin-top: .35rem; }
+
+  .list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .list li {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px 14px 46px; position: relative; color: var(--fg);
+  }
+  .list li::before {
+    content: "✓"; position: absolute; left: 16px; top: 13px; font-weight: 700; color: var(--blue);
+    text-shadow: 0 0 10px hsl(200 100% 55% / .6);
+  }
+  .list li span { color: var(--muted); display: block; font-size: .92rem; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  .side { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .side.nos { box-shadow: 0 0 0 1px hsl(280 80% 60% / .35), 0 0 30px hsl(280 80% 60% / .12); }
+  .side.voce { box-shadow: 0 0 0 1px hsl(330 85% 60% / .35), 0 0 30px hsl(330 85% 60% / .12); }
+  .side h3 { font-size: 1.1rem; }
+  .side.nos h3 { color: var(--purple); }
+  .side.voce h3 { color: var(--pink); }
+  .side ul { list-style: none; margin-top: 12px; display: grid; gap: 9px; }
+  .side li { padding-left: 20px; position: relative; color: var(--fg); font-size: .97rem; }
+  .side li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .5; }
+  .side li small { color: var(--muted); display: block; font-size: .88rem; }
+
+  .buy { display: grid; gap: 14px; margin-top: 24px; }
+  .buyitem {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  }
+  .buyitem h3 { font-size: 1.1rem; }
+  .tag { display: inline-block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 999px; margin-left: .4rem; vertical-align: middle; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+  .tag.paga { background: var(--orange); color: hsl(230 25% 7%); }
+  .tag.ok { background: var(--blue); color: hsl(230 25% 7%); }
+  .buyitem p { color: var(--muted); font-size: .95rem; margin-top: .4rem; }
+  .buyitem p b { color: var(--fg); font-weight: 600; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    min-height: 46px; padding: 0 20px; border-radius: 12px; text-decoration: none; white-space: nowrap;
+    font-weight: 700; color: #fff; background: linear-gradient(100deg, var(--purple), var(--pink));
+    box-shadow: 0 0 18px hsl(330 85% 60% / .35); transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active { transform: scale(.97); }
+  @media (hover: hover) { .btn:hover { box-shadow: 0 0 26px hsl(330 85% 60% / .55); } }
+
+  .steps { list-style: none; counter-reset: s; margin-top: 24px; display: grid; gap: 12px; }
+  .steps li {
+    counter-increment: s; background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 16px 16px 66px; position: relative;
+  }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 16px; top: 14px; width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center; font-family: 'Poppins', sans-serif; font-weight: 800;
+    background: hsl(280 80% 60% / .15); color: var(--purple); border: 1px solid hsl(280 80% 60% / .4);
+  }
+  .steps li b { display: block; }
+  .steps li span { color: var(--muted); font-size: .94rem; }
+  .who { display: block; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; margin-bottom: .15rem; }
+  .who.n { color: var(--purple); } .who.v { color: var(--pink); }
+
+  .price {
+    margin-top: 24px; border-radius: 20px; padding: 30px 24px; text-align: center; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, hsl(280 60% 18%), hsl(330 60% 16%) 60%, hsl(230 25% 10%));
+    border: 1px solid hsl(330 85% 60% / .35); box-shadow: 0 0 40px hsl(330 85% 60% / .15);
+  }
+  .price .val { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 10vw, 3.6rem); line-height: 1; margin-top: .6rem; }
+  .price .val small { font-size: .38em; font-weight: 700; color: var(--muted); vertical-align: super; margin-right: .2em; }
+  .price .meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .pill { background: hsl(230 25% 7% / .5); border: 1px solid hsl(0 0% 100% / .12); border-radius: 999px; padding: .45rem 1rem; font-size: .92rem; }
+  .price p { color: hsl(0 0% 100% / .9); font-weight: 500; font-size: .95rem; margin-top: 16px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  .note { margin-top: 18px; color: var(--muted); font-size: .9rem; border-left: 3px solid var(--yellow); padding: 4px 0 4px 14px; }
+
+  footer { margin-top: 72px; text-align: center; color: hsl(230 15% 45%); font-size: .82rem; letter-spacing: .3em; text-transform: uppercase; }
+  footer a { color: var(--fg); text-decoration: none; letter-spacing: normal; text-transform: none; font-size: .95rem; border-bottom: 1px solid hsl(330 85% 60% / .5); }
+  footer div { margin-top: 10px; }
+
+  @media (max-width: 640px) {
+    main { padding-top: 40px; }
+    section { margin-top: 44px; }
+    .split { grid-template-columns: 1fr; }
+    .buyitem { grid-template-columns: 1fr; }
+    .btn { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="glow a"></div>
+<div class="glow b"></div>
+<div class="grid"></div>
+
+<main>
+  <span class="badge"><span class="dot"></span>Proposta · Disparos de Figurinhas</span>
+  <h1>Seu canal de figurinhas postando sozinho</h1>
+  <p class="lead">
+    A gente monta um robô que <strong>busca, filtra e posta figurinhas</strong> no seu canal do WhatsApp todos os dias,
+    num ritmo que <strong>não parece spam</strong>. Você não precisa pensar em estratégia agora:
+    o canal segue ativo e crescendo enquanto você cuida do resto.
+  </p>
+
+  <section>
+    <div class="kicker">O conceito</div>
+    <h2>Como funciona</h2>
+    <div class="cards">
+      <div class="card" style="--c: var(--purple)">
+        <div class="ico">🔎</div>
+        <h3>Garimpa</h3>
+        <p>Busca figurinhas novas sozinho em bancos de figurinhas e pacotes do Telegram.</p>
+      </div>
+      <div class="card" style="--c: var(--pink)">
+        <div class="ico">🧹</div>
+        <h3>Filtra</h3>
+        <p>Uma IA olha cada uma e descarta o que é impróprio, repetido ou sem qualidade.</p>
+      </div>
+      <div class="card" style="--c: var(--blue)">
+        <div class="ico">🪄</div>
+        <h3>Ajusta</h3>
+        <p>Converte pro formato do WhatsApp, inclusive as animadas.</p>
+      </div>
+      <div class="card" style="--c: var(--orange)">
+        <div class="ico">📲</div>
+        <h3>Posta</h3>
+        <p>Publica no seu canal ao longo do dia, todos os dias, sem você encostar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Sem cara de robô</div>
+    <h2>Movimento constante, sem virar spam</h2>
+    <ul class="list">
+      <li>Horários que variam todo dia<span>Nada de postar sempre no mesmo minuto, que é o que denuncia automação.</span></li>
+      <li>Intervalos de gente de verdade<span>As postagens saem espaçadas, em pequenos blocos, nunca uma enxurrada.</span></li>
+      <li>Nada repetido<span>O sistema lembra o que já foi postado e não manda a mesma figurinha de novo.</span></li>
+      <li>Volume que cresce aos poucos<span>Começa leve e vai subindo, pra o número ganhar confiança com o WhatsApp.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">Divisão do trabalho</div>
+    <h2>Quem faz o quê</h2>
+    <p class="sub">A ideia é você ter o mínimo de trabalho possível.</p>
+    <div class="split">
+      <div class="side nos">
+        <h3>A gente faz</h3>
+        <ul>
+          <li>Cria um e-mail de acesso só do projeto<small>Tudo fica centralizado nele, no seu nome.</small></li>
+          <li>Faz todos os cadastros gratuitos<small>Banco de dados, robô de garimpo e bancos de figurinhas.</small></li>
+          <li>Instala e configura o servidor</li>
+          <li>Conecta no seu canal e testa tudo</li>
+        </ul>
+      </div>
+      <div class="side voce">
+        <h3>Você faz</h3>
+        <ul>
+          <li>Cria as 2 contas pagas<small>Hostinger e OpenRouter, com o e-mail de acesso que vamos te mandar.</small></li>
+          <li>Lê um QR code no dia da conexão<small>Com o celular do chip do canal. Leva 5 minutos.</small></li>
+          <li>Mantém esse celular ligado<small>E abre o WhatsApp de vez em quando, pra conexão não cair.</small></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">O que contratar</div>
+    <h2>As contas pagas</h2>
+    <p class="sub">Ficam no seu nome e no seu cartão. O pagamento vai direto pra cada empresa.</p>
+    <div class="buy">
+      <div class="buyitem">
+        <div>
+          <h3>Hostinger · Servidor VPS <span class="tag paga">Paga</span></h3>
+          <p>É o computador na nuvem onde o robô vai rodar 24h. Escolha o plano <b>KVM 2</b> no período <b>mensal (1 mês)</b>.
+          Não feche anual: logo vamos passar pra um servidor maior, então não vale se prender agora.
+          O resto pode deixar como vier, a gente configura.</p>
+        </div>
+        <a class="btn" href="https://www.hostinger.com.br/servidor-vps" target="_blank" rel="noopener">Contratar ›</a>
+      </div>
+      <div class="buyitem">
+        <div>
+          <h3>OpenRouter · Créditos de IA <span class="tag paga">Paga</span></h3>
+          <p>É a IA que olha e filtra as figurinhas. Depois de entrar, vá em <b>Credits</b> e coloque <b>US$ 10</b> (uns R$ 60).
+          É pré-pago e o gasto é pequeno, então esse crédito dura bastante tempo.</p>
+        </div>
+        <a class="btn" href="https://openrouter.ai/settings/credits" target="_blank" rel="noopener">Contratar ›</a>
+      </div>
+      <div class="buyitem">
+        <div>
+          <h3>Chip e canal do WhatsApp <span class="tag ok">Você já tem</span></h3>
+          <p>Vamos usar o canal e o chip que você já tem. Nada novo pra comprar aqui.</p>
+        </div>
+      </div>
+    </div>
+    <p class="note">Nas duas contas pagas, use o botão <b>"Entrar com Google"</b> com o e-mail de acesso que vamos te mandar. Assim a gente já consegue configurar tudo sem você precisar passar senha nenhuma.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Passo a passo</div>
+    <h2>Do ok ao canal rodando</h2>
+    <ol class="steps">
+      <li><span class="who n">A gente</span><b>Mandamos o e-mail de acesso</b><span>Você recebe o login do e-mail do projeto.</span></li>
+      <li><span class="who v">Você</span><b>Você contrata Hostinger e OpenRouter</b><span>Com esse e-mail e o seu cartão, seguindo as instruções acima.</span></li>
+      <li><span class="who n">A gente</span><b>Montamos tudo</b><span>Servidor, banco de dados, garimpo, filtro e postagem.</span></li>
+      <li><span class="who v">Você</span><b>Conexão por QR code</b><span>Combinamos um horário, você lê o QR com o celular do canal e pronto.</span></li>
+      <li><span class="who n">A gente</span><b>Testes e canal no ar</b><span>Acompanhamos as primeiras postagens e ajustamos o ritmo.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="kicker">Investimento</div>
+    <div class="price">
+      <div class="pill" style="display:inline-block">Implantação completa</div>
+      <div class="val"><small>R$</small>1.500</div>
+      <div class="meta">
+        <span class="pill">⏱️ 2 dias de implantação e testes</span>
+        <span class="pill">📲 Canal postando sozinho</span>
+      </div>
+      <p>📌 Os R$ 1.500 são a implantação. Servidor e créditos de IA você paga direto pra Hostinger e pro OpenRouter. O prazo começa quando as duas contas estiverem criadas.</p>
+    </div>
+  </section>
+
+  <footer>
+    Brunotropolis
+    <div><a href="mailto:contato@brunotropolis.com.br">contato@brunotropolis.com.br</a></div>
+  </footer>
+</main>
+</body>
+</html>
