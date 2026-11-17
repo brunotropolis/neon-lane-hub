@@ -184,8 +184,11 @@
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   .ent { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
+  .ent .card { display: flex; flex-direction: column; }
+  .ent .card p { flex: 1; }
+  .ent .card .foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
   .ent .card .n { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--c); }
-  .ent .card .v { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.7rem; margin-top: .8rem; }
+  .ent .card .v { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.7rem; line-height: 1.1; }
   .ent .card .d { color: var(--fg); font-size: .9rem; margin-top: .2rem; }
   .block { margin-top: 28px; }
   .block h3 { font-size: 1.15rem; }
@@ -254,22 +257,22 @@
         <div class="n">Entrega 1</div>
         <h3>Gerenciador de ofertas</h3>
         <p>Campanhas, coleta, postagem manual, aprovação e equipe.</p>
-        <div class="v">R$ 9.000</div>
-        <div class="d">Beta 20/11 · final 25/11</div>
+        <div class="foot"><div class="v">R$ 9.000</div>
+        <div class="d">Beta 20/11 · final 25/11</div></div>
       </div>
       <div class="card" style="--c: var(--pink)">
         <div class="n">Entrega 2</div>
         <h3>Site</h3>
         <p>Site de cupons e ofertas, comunidade, cupons e Pinterest.</p>
-        <div class="v">R$ 15.000</div>
-        <div class="d">Beta 16/12 · final 23/12</div>
+        <div class="foot"><div class="v">R$ 15.000</div>
+        <div class="d">Beta 16/12 · final 23/12</div></div>
       </div>
       <div class="card" style="--c: var(--blue)">
         <div class="n">Entrega 3</div>
         <h3>Conteúdo e automação</h3>
         <p>Carrosséis e posts programados no Instagram, TikTok, Shorts e Facebook, e o Tio Patinhas no seu Claude.</p>
-        <div class="v">R$ 6.000</div>
-        <div class="d">A partir de 10/01</div>
+        <div class="foot"><div class="v">R$ 6.000</div>
+        <div class="d">A partir de 10/01</div></div>
       </div>
     </div>
   </section>
@@ -402,19 +405,6 @@
     </div>
   </section>
 
-  <section>
-    <div class="kicker">Cronograma</div>
-    <h2>Do ok à plataforma completa</h2>
-    <ol class="steps">
-      <li><span class="date">até 18/11</span><span class="who v">Você</span><b>Tags e equipe</b><span>As campanhas com as tags de cada loja, a lista da equipe e os vínculos das contas.</span></li>
-      <li><span class="date">20/11</span><span class="who n">A gente</span><b>Beta do gerenciador</b><span>Amazon, Mercado Livre, Shopee, Magazine Luiza, Beleza na Web, Natura e Época.</span></li>
-      <li><span class="date">25/11</span><span class="who n">A gente</span><b>Gerenciador completo</b><span>Antes da Black Friday. As demais lojas e redes entram na sequência.</span></li>
-      <li><span class="date">até 01/12</span><span class="who v">Você</span><b>Layout do site aprovado</b><span>Com o material do seu designer.</span></li>
-      <li><span class="date">23/12</span><span class="who n">A gente</span><b>Site no ar</b><span>Beta em 16/12, com cupons, comentários e Pinterest.</span></li>
-      <li><span class="date">a partir de 10/01</span><span class="who n">A gente</span><b>Conteúdo e automação</b><span>Carrosséis e posts programados no Instagram, TikTok, Shorts e Facebook, e o Tio Patinhas.</span></li>
-    </ol>
-    <p class="note">A aprovação nas redes de afiliado e a publicação automática no Pinterest dependem delas e não têm prazo fixo. O pedido sai já na primeira semana; enquanto não sai, os pins ficam numa fila pra equipe postar.</p>
-  </section>
 
   <section>
     <div class="kicker">Investimento</div>
