@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Espiã de Ofertinhas | Brunotropolis</title>
+<meta name="description" content="Proposta: plataforma da Espiã de Ofertinhas, do link ao post, com site e automação." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0d0f17" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: hsl(230 25% 7%);
+    --card: hsl(230 20% 10%);
+    --card2: hsl(230 20% 12%);
+    --border: hsl(230 20% 22%);
+    --fg: hsl(0 0% 95%);
+    --muted: hsl(230 10% 62%);
+    --purple: hsl(280 80% 60%);
+    --pink: hsl(330 85% 60%);
+    --blue: hsl(200 100% 55%);
+    --orange: hsl(30 100% 55%);
+    --yellow: hsl(45 100% 55%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, hsl(0 0% 100% / .4), transparent),
+      radial-gradient(1px 1px at 30% 60%, hsl(0 0% 100% / .3), transparent),
+      radial-gradient(1.5px 1.5px at 50% 10%, hsl(0 0% 100% / .5), transparent),
+      radial-gradient(1px 1px at 70% 40%, hsl(0 0% 100% / .3), transparent),
+      radial-gradient(1px 1px at 80% 80%, hsl(0 0% 100% / .4), transparent),
+      radial-gradient(1.5px 1.5px at 15% 85%, hsl(0 0% 100% / .3), transparent),
+      radial-gradient(1px 1px at 90% 15%, hsl(0 0% 100% / .5), transparent),
+      radial-gradient(1px 1px at 45% 75%, hsl(0 0% 100% / .2), transparent),
+      radial-gradient(1.5px 1.5px at 25% 35%, hsl(0 0% 100% / .4), transparent),
+      radial-gradient(1px 1px at 85% 65%, hsl(0 0% 100% / .3), transparent);
+  }
+  .glow { position: fixed; border-radius: 50%; filter: blur(100px); opacity: .28; z-index: 0; pointer-events: none; }
+  .glow.a { width: 420px; height: 420px; background: var(--purple); top: -140px; left: -140px; }
+  .glow.b { width: 380px; height: 380px; background: var(--pink); bottom: -160px; right: -140px; }
+  .grid {
+    position: absolute; left: 0; right: 0; top: 0; height: 620px; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(hsl(280 80% 60% / .10) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(280 80% 60% / .10) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 30%, transparent);
+  }
+  main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 56px 16px 64px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-size: .74rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
+    padding: .45rem 1rem; background: hsl(230 20% 10% / .6);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 10px var(--blue); }
+
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; letter-spacing: -.02em; }
+  h1 {
+    margin-top: 1.4rem;
+    font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 800; line-height: 1.05;
+    background: linear-gradient(100deg, var(--purple), var(--pink) 55%, var(--blue));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .lead { margin-top: 1.1rem; font-size: clamp(1.02rem, 2.6vw, 1.2rem); color: var(--muted); max-width: 640px; }
+  .lead strong { color: var(--fg); font-weight: 600; }
+
+  section { margin-top: 64px; }
+  .kicker { font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); font-weight: 600; }
+  h2 { font-size: clamp(1.5rem, 5vw, 2.1rem); font-weight: 700; margin-top: .35rem; line-height: 1.15; }
+  .sub { color: var(--muted); margin-top: .5rem; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 24px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px;
+    background: var(--c, var(--purple)); box-shadow: 0 0 16px var(--c, var(--purple));
+  }
+  .card .ico { font-size: 2rem; line-height: 1; }
+  .card h3 { font-size: 1.05rem; margin-top: .7rem; font-weight: 700; }
+  .card p { color: var(--muted); font-size: .95rem; margin-top: .35rem; }
+
+  .list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .list li {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px 14px 46px; position: relative; color: var(--fg);
+  }
+  .list li::before {
+    content: "✓"; position: absolute; left: 16px; top: 13px; font-weight: 700; color: var(--blue);
+    text-shadow: 0 0 10px hsl(200 100% 55% / .6);
+  }
+  .list li span { color: var(--muted); display: block; font-size: .92rem; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  .side { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .side.nos { box-shadow: 0 0 0 1px hsl(280 80% 60% / .35), 0 0 30px hsl(280 80% 60% / .12); }
+  .side.voce { box-shadow: 0 0 0 1px hsl(330 85% 60% / .35), 0 0 30px hsl(330 85% 60% / .12); }
+  .side h3 { font-size: 1.1rem; }
+  .side.nos h3 { color: var(--purple); }
+  .side.voce h3 { color: var(--pink); }
+  .side ul { list-style: none; margin-top: 12px; display: grid; gap: 9px; }
+  .side li { padding-left: 20px; position: relative; color: var(--fg); font-size: .97rem; }
+  .side li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .5; }
+  .side li small { color: var(--muted); display: block; font-size: .88rem; }
+
+  .buy { display: grid; gap: 14px; margin-top: 24px; }
+  .buyitem {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  }
+  .buyitem h3 { font-size: 1.1rem; }
+  .tag { display: inline-block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 999px; margin-left: .4rem; vertical-align: middle; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+  .tag.paga { background: var(--orange); color: hsl(230 25% 7%); }
+  .tag.ok { background: var(--blue); color: hsl(230 25% 7%); }
+  .buyitem p { color: var(--muted); font-size: .95rem; margin-top: .4rem; }
+  .buyitem p b { color: var(--fg); font-weight: 600; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    min-height: 46px; padding: 0 20px; border-radius: 12px; text-decoration: none; white-space: nowrap;
+    font-weight: 700; color: #fff; background: linear-gradient(100deg, var(--purple), var(--pink));
+    box-shadow: 0 0 18px hsl(330 85% 60% / .35); transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active { transform: scale(.97); }
+  @media (hover: hover) { .btn:hover { box-shadow: 0 0 26px hsl(330 85% 60% / .55); } }
+
+  .steps { list-style: none; counter-reset: s; margin-top: 24px; display: grid; gap: 12px; }
+  .steps li {
+    counter-increment: s; background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 16px 16px 66px; position: relative;
+  }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 16px; top: 14px; width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center; font-family: 'Poppins', sans-serif; font-weight: 800;
+    background: hsl(280 80% 60% / .15); color: var(--purple); border: 1px solid hsl(280 80% 60% / .4);
+  }
+  .steps li b { display: block; }
+  .steps li span { color: var(--muted); font-size: .94rem; }
+  .who { display: block; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; margin-bottom: .15rem; }
+  .who.n { color: var(--purple); } .who.v { color: var(--pink); }
+
+  .price {
+    margin-top: 24px; border-radius: 20px; padding: 30px 24px; text-align: center; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, hsl(280 60% 18%), hsl(330 60% 16%) 60%, hsl(230 25% 10%));
+    border: 1px solid hsl(330 85% 60% / .35); box-shadow: 0 0 40px hsl(330 85% 60% / .15);
+  }
+  .price .val { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 10vw, 3.6rem); line-height: 1; margin-top: .6rem; }
+  .price .val small { font-size: .38em; font-weight: 700; color: var(--muted); vertical-align: super; margin-right: .2em; }
+  .price .meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .pill { background: hsl(230 25% 7% / .5); border: 1px solid hsl(0 0% 100% / .12); border-radius: 999px; padding: .45rem 1rem; font-size: .92rem; }
+  .price p { color: hsl(0 0% 100% / .9); font-weight: 500; font-size: .95rem; margin-top: 16px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  .note { margin-top: 18px; color: var(--muted); font-size: .9rem; border-left: 3px solid var(--yellow); padding: 4px 0 4px 14px; }
+
+  footer { margin-top: 72px; text-align: center; color: hsl(230 15% 45%); font-size: .82rem; letter-spacing: .3em; text-transform: uppercase; }
+  footer a { color: var(--fg); text-decoration: none; letter-spacing: normal; text-transform: none; font-size: .95rem; border-bottom: 1px solid hsl(330 85% 60% / .5); }
+  footer div { margin-top: 10px; }
+
+  @media (max-width: 640px) {
+    main { padding-top: 40px; }
+    section { margin-top: 44px; }
+    .split { grid-template-columns: 1fr; }
+    .buyitem { grid-template-columns: 1fr; }
+    .btn { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .ent { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
+  .ent .card .n { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--c); }
+  .ent .card .v { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.7rem; margin-top: .8rem; }
+  .ent .card .d { color: var(--fg); font-size: .9rem; margin-top: .2rem; }
+  .block { margin-top: 28px; }
+  .block h3 { font-size: 1.15rem; }
+  .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 14px; }
+  .role { background: var(--card2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .role b { font-family: 'Poppins', sans-serif; }
+  .role span { display: block; color: var(--muted); font-size: .9rem; margin-top: .2rem; }
+  .stores { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .store { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: .35rem .85rem; font-size: .9rem; }
+  .store.auto { border-color: hsl(200 100% 55% / .7); box-shadow: 0 0 12px hsl(200 100% 55% / .2); }
+  .legend { color: var(--muted); font-size: .88rem; margin-top: 10px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 1px solid hsl(200 100% 55% / .9); box-shadow: 0 0 8px hsl(200 100% 55% / .5); margin-right: 6px; vertical-align: middle; }
+  .steps li .date { float: right; font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--pink); font-size: .92rem; margin-left: 10px; }
+  .fine { margin-top: 14px; color: var(--muted); font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="glow a"></div>
+<div class="glow b"></div>
+<div class="grid"></div>
+
+<main>
+  <span class="badge"><span class="dot"></span>Proposta · Espiã de Ofertinhas</span>
+  <h1>Sua central de ofertas, do link ao post</h1>
+  <p class="lead">
+    Uma plataforma própria da Espiã que <strong>puxa as ofertas sozinha</strong>, monta os posts com o
+    <strong>seu link de cada campanha</strong>, passa pela aprovação da equipe, alimenta um site de cupons e publica
+    no Pinterest e nas redes. Tudo no seu nome, com os seus dados.
+  </p>
+
+  <section>
+    <div class="kicker">O conceito</div>
+    <h2>Como funciona</h2>
+    <div class="cards">
+      <div class="card" style="--c: var(--purple)">
+        <div class="ico">🔎</div>
+        <h3>Puxa</h3>
+        <p>Robôs buscam ofertas na Amazon, no Mercado Livre e na Shopee, e leem os canais que você indicar.</p>
+      </div>
+      <div class="card" style="--c: var(--pink)">
+        <div class="ico">✅</div>
+        <h3>Confere</h3>
+        <p>A equipe aprova com o histórico de preço do lado, pra nunca postar desconto falso.</p>
+      </div>
+      <div class="card" style="--c: var(--blue)">
+        <div class="ico">🪄</div>
+        <h3>Monta</h3>
+        <p>Cola o link de qualquer loja e sai o post pronto, com a tag da campanha certa.</p>
+      </div>
+      <div class="card" style="--c: var(--orange)">
+        <div class="ico">📣</div>
+        <h3>Publica</h3>
+        <p>No site, no Pinterest e na agenda de posts, com cada ação registrada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Visão geral</div>
+    <h2>Três entregas</h2>
+    <p class="sub">Cada uma já funciona sozinha no dia a dia. A seguinte constrói em cima dela.</p>
+    <div class="ent">
+      <div class="card" style="--c: var(--purple)">
+        <div class="n">Entrega 1</div>
+        <h3>Gerenciador de ofertas</h3>
+        <p>Campanhas, coleta, postagem manual, aprovação e equipe.</p>
+        <div class="v">R$ 9.000</div>
+        <div class="d">Beta 20/11 · final 25/11</div>
+      </div>
+      <div class="card" style="--c: var(--pink)">
+        <div class="n">Entrega 2</div>
+        <h3>Site</h3>
+        <p>Site de cupons e ofertas, comunidade, cupons e Pinterest.</p>
+        <div class="v">R$ 15.000</div>
+        <div class="d">Beta 16/12 · final 23/12</div>
+      </div>
+      <div class="card" style="--c: var(--blue)">
+        <div class="n">Entrega 3</div>
+        <h3>Conteúdo e automação</h3>
+        <p>Carrosséis, agenda de posts e o Tio Patinhas no seu Claude.</p>
+        <div class="v">R$ 6.000</div>
+        <div class="d">Beta 04/01 · final 07/01</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Entrega 1</div>
+    <h2>Gerenciador de ofertas</h2>
+    <p class="sub">A ferramenta interna onde a equipe encontra, confere e prepara cada oferta.</p>
+    <ul class="list">
+      <li>Campanhas com tags próprias<span>Cada campanha tem a sua tag em cada loja. O link sai sempre com a tag certa.</span></li>
+      <li>Ofertas puxadas sozinhas<span>Amazon, Mercado Livre, Shopee e os canais e grupos que você indicar.</span></li>
+      <li>Postagem manual<span>Cola o link e sai o post: descrição, preço, cupom, link e imagem compacta.</span></li>
+      <li>Aprovação com histórico de preço<span>Preço gravado desde o primeiro dia, pra barrar desconto falso.</span></li>
+      <li>Imagem do produto<span>Print compacto, ou a foto do seu Drive vinculada ao produto.</span></li>
+      <li>Fila de postagem<span>Copiar, baixar e marcar como postado, com nome e horário de quem postou.</span></li>
+    </ul>
+
+    <div class="block">
+      <h3>Equipe e acessos</h3>
+      <p class="sub">Você libera cada seção por pessoa, e toda ação fica registrada.</p>
+      <div class="roles">
+        <div class="role"><b>Dona</b><span>Tudo, inclusive usuários e comissões.</span></div>
+        <div class="role"><b>Gerente</b><span>Tudo menos usuários e comissões.</span></div>
+        <div class="role"><b>Equipe</b><span>Só as seções que você liberar.</span></div>
+        <div class="role"><b>Leitura</b><span>Vê, sem alterar nada.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Lojas e programas</h3>
+      <p class="sub">Todos entram na entrega 1. Nas lojas sem coleta automática, você cola o link e a tag entra sozinha.</p>
+      <div class="stores">
+        <span class="store auto">Amazon</span><span class="store auto">Mercado Livre</span><span class="store auto">Shopee</span>
+        <span class="store">Awin</span><span class="store">Rakuten</span><span class="store">Lomadee</span><span class="store">Flipnet</span>
+        <span class="store">Magalu</span><span class="store">Natura</span><span class="store">Avon</span><span class="store">C&amp;A</span>
+        <span class="store">ZZMall</span><span class="store">Lancôme</span><span class="store">YSL</span><span class="store">NARS</span>
+        <span class="store">Elausa</span><span class="store">Damie</span><span class="store">Época Cosméticos</span><span class="store">LTK</span>
+      </div>
+      <p class="legend"><i></i>Com coleta automática. As redes (Awin, Rakuten, Lomadee e Flipnet) abrem todas as lojas que você tiver aprovadas nelas.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Entrega 2</div>
+    <h2>O site da Espiã</h2>
+    <p class="sub">O visual vem do seu designer. A gente entrega o sistema inteiro por trás.</p>
+    <ul class="list">
+      <li>Aprovação de layout<span>Montamos sobre o layout do seu designer, com prova pra você aprovar.</span></li>
+      <li>Estrutura de campanhas<span>Páginas por campanha, loja e categoria.</span></li>
+      <li>Posts com os links<span>Cada oferta aprovada vira página com preço, data, cupom e botão pra loja.</span></li>
+      <li>Site completo<span>Busca, filtros, histórico de preço, páginas de loja e SEO.</span></li>
+      <li>Cupons à parte<span>Você cadastra cupons separados das ofertas, com validade e destaque.</span></li>
+      <li>Pinterest<span>Pin montado do print do produto, publicado ao longo do dia (meta de 20 por dia).</span></li>
+      <li>Comentários<span>Cadastro pra comentar, com proteção contra robô e moderação no painel.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">Entrega 3</div>
+    <h2>Conteúdo e automação</h2>
+    <ul class="list">
+      <li>Carrosséis<span>Criados a partir das ofertas escolhidas, com texto e imagem por IA no seu padrão.</span></li>
+      <li>Agenda de posts<span>Calendário pra programar posts e carrosséis, publicados no horário marcado.</span></li>
+      <li>Tio Patinhas no seu Claude<span>Pergunte em português sobre ofertas, cliques e vendas. Só lê, e você cancela o acesso quando quiser.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">Infraestrutura e segurança</div>
+    <h2>Quem faz o quê</h2>
+    <p class="sub">Tudo em contas no seu nome. A segurança vem em cada entrega, não como adicional.</p>
+    <div class="split">
+      <div class="side nos">
+        <h3>A gente faz</h3>
+        <ul>
+          <li>Instala e configura servidor, banco e site</li>
+          <li>Painel atrás de duas portas<small>Acesso do Cloudflare e o login da ferramenta.</small></li>
+          <li>Cada perfil vê só o que pode<small>Controlado no próprio banco de dados.</small></li>
+          <li>Servidor fechado e backup diário<small>Só recebe conexão do Cloudflare. Backup guardado fora dele.</small></li>
+          <li>Teste de invasão antes de cada entrega</li>
+        </ul>
+      </div>
+      <div class="side voce">
+        <h3>Você faz</h3>
+        <ul>
+          <li>Cria as contas pagas<small>Servidor, banco e IA, com verificação em duas etapas.</small></li>
+          <li>Manda os acessos e as tags até 18/11<small>Contas de afiliado, campanhas e a lista da equipe.</small></li>
+          <li>Aprova o layout do site até 01/12<small>Com o material do seu designer.</small></li>
+          <li>Cria a conta empresarial no Pinterest</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">O que contratar</div>
+    <h2>As contas pagas</h2>
+    <p class="sub">Ficam no seu nome e no seu cartão. Ao todo, cerca de R$ 400 a R$ 600 por mês.</p>
+    <div class="buy">
+      <div class="buyitem">
+        <div>
+          <h3>Hostinger · Servidor VPS <span class="tag paga">Paga</span></h3>
+          <p>Onde o painel, o site e os robôs rodam 24h. Plano <b>KVM 4</b> (4 núcleos), uns <b>R$ 120 a R$ 150</b> por mês.</p>
+        </div>
+        <a class="btn" href="https://www.hostinger.com.br/servidor-vps" target="_blank" rel="noopener">Contratar ›</a>
+      </div>
+      <div class="buyitem">
+        <div>
+          <h3>Supabase · Banco de dados <span class="tag paga">Paga</span></h3>
+          <p>Guarda ofertas, histórico de preço, usuários e comentários, com backup. Plano <b>Pro</b>, <b>US$ 25</b> por mês.</p>
+        </div>
+        <a class="btn" href="https://supabase.com/pricing" target="_blank" rel="noopener">Contratar ›</a>
+      </div>
+      <div class="buyitem">
+        <div>
+          <h3>OpenRouter · Créditos de IA <span class="tag paga">Paga</span></h3>
+          <p>A IA dos textos, artigos, pins e carrosséis. Pré-pago, uns <b>US$ 30 a US$ 50</b> por mês, conforme o volume.</p>
+        </div>
+        <a class="btn" href="https://openrouter.ai/settings/credits" target="_blank" rel="noopener">Contratar ›</a>
+      </div>
+      <div class="buyitem">
+        <div>
+          <h3>Cloudflare, e-mail e Pinterest <span class="tag ok">Grátis</span></h3>
+          <p>Proteção e velocidade do site, e-mail de cadastro e publicação no Pinterest, nos planos gratuitos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Cronograma</div>
+    <h2>Do ok à plataforma completa</h2>
+    <ol class="steps">
+      <li><span class="date">até 18/11</span><span class="who v">Você</span><b>Acessos, contas e tags</b><span>Servidor, contas de afiliado, campanhas com as tags e a lista da equipe.</span></li>
+      <li><span class="date">20/11</span><span class="who n">A gente</span><b>Beta do gerenciador</b><span>Amazon, Mercado Livre, Shopee e as lojas de código e cupom.</span></li>
+      <li><span class="date">25/11</span><span class="who n">A gente</span><b>Gerenciador completo</b><span>Com as redes de afiliado, antes da Black Friday.</span></li>
+      <li><span class="date">até 01/12</span><span class="who v">Você</span><b>Layout do site aprovado</b><span>Com o material do seu designer.</span></li>
+      <li><span class="date">23/12</span><span class="who n">A gente</span><b>Site no ar</b><span>Beta em 16/12, com cupons, comentários e Pinterest.</span></li>
+      <li><span class="date">07/01</span><span class="who n">A gente</span><b>Conteúdo e automação</b><span>Beta em 04/01, com carrosséis, agenda e Tio Patinhas.</span></li>
+    </ol>
+    <p class="note">A aprovação nas redes de afiliado e a publicação automática no Pinterest dependem delas e não têm prazo fixo. O pedido sai já na primeira semana; enquanto não sai, os pins ficam numa fila pra equipe postar.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Investimento</div>
+    <div class="price">
+      <div class="pill" style="display:inline-block">Plataforma completa · 3 entregas</div>
+      <div class="val"><small>R$</small>30.000</div>
+      <div class="meta">
+        <span class="pill">1 · Gerenciador R$ 9.000</span>
+        <span class="pill">2 · Site R$ 15.000</span>
+        <span class="pill">3 · Conteúdo R$ 6.000</span>
+      </div>
+      <p>📌 50% de entrada no começo de cada etapa e 50% na finalização da entrega. Servidor, banco e créditos de IA você paga direto aos fornecedores.</p>
+    </div>
+    <p class="note">Fora desta proposta: disparo automático nos grupos de WhatsApp, aplicativo de celular, SMS, extensão de navegador, criação do visual do site, anúncios e a curadoria diária das ofertas.</p>
+    <p class="fine">Sistema instalado no seu servidor, com os seus dados, sob licença de uso.</p>
+  </section>
+
+  <footer>
+    Brunotropolis
+    <div><a href="mailto:contato@brunotropolis.com.br">contato@brunotropolis.com.br</a></div>
+  </footer>
+</main>
+</body>
+</html>
